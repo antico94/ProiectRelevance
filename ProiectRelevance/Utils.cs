@@ -33,7 +33,9 @@ public static class Utils
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Inputul este invalid, te rugam sa introduceti in input tip integer.");
+                Console.ResetColor();
             }
         } while (!isValidInteger);
 
@@ -58,11 +60,19 @@ public static class Utils
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Inputul este invalid, te rugam sa introduceti in input tip float.");
+                Console.ResetColor();
             }
         } while (!isValidFloat);
 
         return number;
+    }
+
+    public static void AwaitUserInput()
+    {        
+        Console.WriteLine("Apasa orice tasta pentru a reveni la meniul principal.");
+        Console.ReadKey();
     }
     
 

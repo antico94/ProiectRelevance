@@ -27,10 +27,6 @@ public class Ghiozdan
         if (GreutateCurenta + articol.Greutate > GreutateMaxima) return false;
         if (VolumCurent + articol.Volum > VolumMaxim) return false;
 
-        Console.Clear();
-        Console.WriteLine($"Adaugat {articol.GetType().Name}");
-        Console.ReadKey();
-
         NumarArticoleExistente += 1;
         GreutateCurenta += articol.Greutate;
         VolumCurent += articol.Volum;
@@ -57,24 +53,37 @@ public class Ghiozdan
 
     public void VerificaContinut()
     {
-        Console.WriteLine("Continutul ghiozdanului:");
-        var counts = new Dictionary<Type, int>();
+        Console.Clear();
+        Console.WriteLine($"Status Ghiozdan: \n" +
+                          $"- Numar Articole: {NumarArticoleExistente}/{NumarArticoleMaxim}\n" +
+                          $"- Greutate: {GreutateCurenta}/{GreutateMaxima} \n" +
+                          $"- Volum: {VolumCurent}/{VolumMaxim}\n");
 
-        foreach (ArticolInventar articol in Continut)
+        if (Continut.Count == 0)
         {
-            if (counts.ContainsKey(articol.GetType()))
-            {
-                counts[articol.GetType()]++;
-            }
-            else
-            {
-                counts.Add(articol.GetType(), 1);
-            }
+            Console.WriteLine("Ghiozdanul este gol.");
         }
-
-        foreach (var count in counts)
+        else
         {
-            Console.WriteLine($"- {count.Key.Name}: {count.Value}");
+            Console.WriteLine("Continutul ghiozdanului:");
+            var counts = new Dictionary<Type, int>();
+
+            foreach (ArticolInventar articol in Continut)
+            {
+                if (counts.ContainsKey(articol.GetType()))
+                {
+                    counts[articol.GetType()]++;
+                }
+                else
+                {
+                    counts.Add(articol.GetType(), 1);
+                }
+            }
+
+            foreach (var count in counts)
+            {
+                Console.WriteLine($"- {count.Key.Name}: {count.Value}");
+            }
         }
     }
 }
