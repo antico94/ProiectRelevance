@@ -1,4 +1,4 @@
-namespace ProiectRelevance.Classes;
+namespace ProiectRelevance.Items;
 
 public class Sageata : ArticolInventar
 {
